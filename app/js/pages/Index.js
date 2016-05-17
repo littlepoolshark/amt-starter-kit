@@ -5,6 +5,8 @@ import {
   NavBar,
   Group,
   View,
+  Button,
+  Field,
 } from 'amazeui-touch';
 import {
   Link,
@@ -44,12 +46,30 @@ const Index = React.createClass({
         />
         <Container scrollable>
           <Group
-            header="Welcome to AMT."
+            header="Welcome to AMT.Good to see you"
             noPadded
           >
             <List>
               {this.renderItems()}
             </List>
+          </Group>
+
+          <Group
+            header="登录表单"
+            noPadded
+          >
+            <Field
+              label="账号"
+              placeholder="请输入您的账号"
+              type="text"
+            />
+
+            <Field
+              label="密码"
+              placeholder="请输入您的密码"
+              type="password"
+            />
+            <div><Button amStyle="primary" block>登录</Button></div>
           </Group>
         </Container>
       </View>
