@@ -7,6 +7,7 @@ import {
   View,
   Button,
   Field,
+  Modal,
 } from 'amazeui-touch';
 import {
   Link,
@@ -37,41 +38,52 @@ const Index = React.createClass({
     });
   },
 
+  handleClick(){
+    let account=this.refs.account.getValue();
+    let password=this.refs.password.getValue();
+    if(account == "13682330541" && password == "123456"){
+
+      this.refs.loginSuccess.open();
+      
+    }else {
+      this.refs.loginFailed.open();
+    }
+  },
+
+  handleLoginSuccess(){
+    this.props.history.pushState(null, '/investmentIndex');
+  },
+
   render() {
     return (
       <View>
         <NavBar
           amStyle="primary"
-          title="AMT Starter Kit"
+          title="农泰金融"
         />
         <Container scrollable>
-          <Group
-            header="Welcome to AMT.Good to see you"
-            noPadded
-          >
-            <List>
-              {this.renderItems()}
-            </List>
-          </Group>
-
-          <Group
-            header="登录表单"
-            noPadded
-          >
-            <Field
-              label="账号"
-              placeholder="请输入您的账号"
-              type="text"
-            />
-
-            <Field
-              label="密码"
-              placeholder="请输入您的密码"
-              type="password"
-            />
-            <div><Button amStyle="primary" block>登录</Button></div>
+          <Group>
+            <h3 className="text-center">登录</h3>
+            <Field type="text" label="账号" ref="account"></Field>
+            <Field type="text" label="密码" ref="password"></Field>
+            <Button block amStyle="primary" onClick={this.handleClick}>登录</Button>
           </Group>
         </Container>
+        <Modal
+          role="alert"
+          title="提示"
+          ref="loginSuccess"
+          onAction={this.handleLoginSuccess}
+        >
+          恭喜你，登录成功！
+        </Modal>
+        <Modal
+          role="alert"
+          title="提示"
+          ref="loginFailed"
+        >
+          不好意思，登录失败！
+        </Modal>
       </View>
     );
   },
