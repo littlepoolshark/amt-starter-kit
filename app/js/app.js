@@ -22,6 +22,7 @@ const App = React.createClass({
       children,
       ...props,
       } = this.props;
+      console.log("app props:",this.props);
     const transition = children.props.transition || 'sfr';
 
     return (
